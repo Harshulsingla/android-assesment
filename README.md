@@ -55,12 +55,6 @@ Word Search Screen with API integration and offline saving.
 Word Details Screen with pronunciation playback and offline delete functionality.
 Saved Words List.
 
-**Screenshots**
-Include the following screenshots:
-Word Search Screen
-Word Details Screen
-Saved Words Screen
-
 **Advanced Features**
 Filters for saved words by part of speech.
 Audio playback functionality for word pronunciation.
@@ -77,7 +71,11 @@ Create a feature branch:
 Commit changes and push to your fork.
 Submit a pull request.
 
-**License**
-This project is licensed under the MIT License. See the LICENSE file for more information.
-git checkout -b feature-name
-git clone <repository-url>
+
+**Screenshots**
+![{B1D9586A-75AA-4A33-B813-65471E884FC7}](https://github.com/user-attachments/assets/418be7e2-a96f-4d87-afab-39a7b353c39d)
+![{CB844D4B-68D6-475A-8F61-369F8092EDA4}](https://github.com/user-attachments/assets/b4d1b6b5-dd00-4903-8ffa-658d6276ec5e)
+![{5F89DB9B-E4F1-4D6B-B015-83901C99391A}](https://github.com/user-attachments/assets/85e29700-2ce6-4f4e-bcdd-ea918c467d8c)
+
+
+
