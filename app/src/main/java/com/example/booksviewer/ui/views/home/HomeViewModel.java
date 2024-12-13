@@ -6,16 +6,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.booksviewer.data.db.DbService;
 import com.example.booksviewer.data.repository.Repository;
-import com.example.booksviewer.domain.entity.BookEntity;
-import com.example.booksviewer.domain.entity.SaleInfoEntity;
-import com.example.booksviewer.domain.entity.SearchInfoEntity;
-import com.example.booksviewer.domain.entity.VolumeInfoEntity;
 import com.example.booksviewer.domain.models.BookModel;
 import com.example.booksviewer.domain.models.BookResponseModel;
-import com.example.booksviewer.domain.models.SaleInfoModel;
-import com.example.booksviewer.domain.models.SearchInfoModel;
-import com.example.booksviewer.domain.models.VolumeInfoModel;
 import com.example.booksviewer.domain.relation.BookWithDetails;
+import com.example.booksviewer.utils.BookUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,7 +66,7 @@ public class HomeViewModel extends ViewModel {
                 updateSearchHistory(query);
                 List<BookModel> newBooks = fetchBooksFromApi(query, startIndex, maxResults);
 
-                if (newBooks != null && !newBooks.isEmpty()) {
+                if (!newBooks.isEmpty()) {
                     books.postValue(newBooks);
                 } else {
                     Log.e("HomeViewModel", "Error: No books found");
@@ -145,7 +139,7 @@ public class HomeViewModel extends ViewModel {
             return;
         }
 
-        BookWithDetails bookWithDetails = mapBookToEntity(book);
+        BookWithDetails bookWithDetails = BookUtils.mapBookToEntity(book);
         executorService.submit(() -> {
             try {
                 dbService.insertBookWithDetails(bookWithDetails);
@@ -153,55 +147,6 @@ public class HomeViewModel extends ViewModel {
                 Log.e("saveBookToDb", "Error saving book to DB", e);
             }
         });
-    }
-
-    private BookWithDetails mapBookToEntity(BookModel book) {
-        BookWithDetails bookWithDetails = new BookWithDetails();
-        bookWithDetails.bookEntity = mapBookEntity(book);
-        bookWithDetails.saleInfoEntity = mapSaleInfo(book.getSaleInfo());
-        bookWithDetails.searchInfoEntity = mapSearchInfo(book.getSearchInfo());
-        bookWithDetails.volumeInfoEntity = mapVolumeInfo(book.getVolumeInfo());
-        return bookWithDetails;
-    }
-
-    private BookEntity mapBookEntity(BookModel book) {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setBookId(book.getBookId());
-        bookEntity.setSelfLink(book.getSelfLink());
-        bookEntity.setEtag(book.getEtag());
-        return bookEntity;
-    }
-
-    private SaleInfoEntity mapSaleInfo(SaleInfoModel saleInfo) {
-        if (saleInfo == null) return new SaleInfoEntity();
-        SaleInfoEntity saleInfoEntity = new SaleInfoEntity();
-        saleInfoEntity.setEbook(saleInfo.isEbook());
-        saleInfoEntity.setSaleability(saleInfo.getSaleability());
-        return saleInfoEntity;
-    }
-
-    private SearchInfoEntity mapSearchInfo(SearchInfoModel searchInfo) {
-        if (searchInfo == null || searchInfo.getTextSnippet() == null) return new SearchInfoEntity();
-        SearchInfoEntity searchInfoEntity = new SearchInfoEntity();
-        searchInfoEntity.setTextSnippet(searchInfo.getTextSnippet());
-        return searchInfoEntity;
-    }
-
-    private VolumeInfoEntity mapVolumeInfo(VolumeInfoModel volumeInfo) {
-        if (volumeInfo == null) return new VolumeInfoEntity();
-        VolumeInfoEntity volumeInfoEntity = new VolumeInfoEntity();
-        volumeInfoEntity.setAuthors(volumeInfo.getAuthors().toString());
-        volumeInfoEntity.setCategories(volumeInfo.getCategories().toString());
-        volumeInfoEntity.setDescription(volumeInfo.getDescription());
-        volumeInfoEntity.setPageCount(volumeInfo.getPageCount());
-        if(volumeInfo.getImageLinks() != null){
-            volumeInfoEntity.setImageLinks(volumeInfo.getImageLinks().toString());
-        }
-        volumeInfoEntity.setPreviewLink(volumeInfo.getPreviewLink());
-        volumeInfoEntity.setPublishedDate(volumeInfo.getPublishedDate());
-        volumeInfoEntity.setTitle(volumeInfo.getTitle());
-        volumeInfoEntity.setPublisher(volumeInfo.getPublisher());
-        return volumeInfoEntity;
     }
 
     public void unSaveBook(BookModel book) {

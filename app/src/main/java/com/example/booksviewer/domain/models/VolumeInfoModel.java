@@ -1,9 +1,12 @@
 package com.example.booksviewer.domain.models;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 import java.util.List;
 
-public class VolumeInfoModel {
+public class VolumeInfoModel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("title")
     private String title;
@@ -29,7 +32,7 @@ public class VolumeInfoModel {
     @SerializedName("pageCount")
     private int pageCount;
 
-    @SerializedName("previewLink")  // Adding the preview link
+    @SerializedName("previewLink")
     private String previewLink;
 
     // Getters and Setters

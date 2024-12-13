@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.booksviewer.domain.models.BookModel;
 import com.example.booksviewer.ui.views.bookDetails.BookDetailsFragment;
+import com.example.booksviewer.ui.views.favourites.FavouriteAdapter;
 import com.example.booksviewer.ui.views.home.HomeFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -36,10 +37,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openHomeFragment() {
-        replaceFragment(new HomeFragment(), "LoginFragment");
+
+        replaceFragment(new HomeFragment(), "HomeFragment");
     }
 
-    public void openBookDetailsFragment(String[] book) {
+//    public void openFavouriteFragment() {
+//        replaceFragment(new FavouriteFragment(), "FavouriteFragment");
+//    }
+
+    public void openBookDetailsFragment(BookModel book) {
         BookDetailsFragment fragment = BookDetailsFragment.newInstance(book);
         replaceFragment(fragment, "BookDetailsFragment");
     }

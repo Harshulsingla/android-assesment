@@ -13,4 +13,8 @@
     <string name="publisher">Publisher</string>
     <string name="description">Description</string>
     <string name="page_count">Page Count</string>
+    <string name="preview_book">Preview Book</string>
+    <string name="published_date">Published Date</string>
+    <string name="book_image">Book Image\n</string>
+    <string name="unsave">Unsave</string>
 </resources>

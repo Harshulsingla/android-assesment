@@ -43,9 +43,12 @@ public interface BookDao {
     // Fetch a single book with its related entities by book ID
     @Transaction
     @Query("SELECT * FROM tbl_books WHERE id = :bookId LIMIT 1")
-    BookWithDetails getBookWithDetailsById(long bookId);
+    BookWithDetails getBookWithDetailsById(String bookId);
 
     @Transaction
     @Query("DELETE FROM tbl_books WHERE clm_book_id = :bookId")
     int deleteBookById(String bookId);
+
+    @Query("SELECT * FROM tbl_books LIMIT :limit OFFSET :offset")
+    List<BookWithDetails> getBooksPaginated(int offset, int limit);
 }

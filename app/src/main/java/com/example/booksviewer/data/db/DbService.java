@@ -20,7 +20,7 @@ public class DbService {
     }
 
     // Fetch a single book with its related entities by book ID
-    public BookWithDetails getBookWithDetailsById(long bookId) {
+    public BookWithDetails getBookWithDetailsById(String bookId) {
         return bookDao.getBookWithDetailsById(bookId);
     }
 
@@ -51,5 +51,9 @@ public class DbService {
 
     public int deleteBookById(String bookId) {
         return bookDao.deleteBookById(bookId);
+    }
+
+    public  List<BookWithDetails> getBooksPaginated(int offset, int limit){
+        return  bookDao.getBooksPaginated(offset,limit);
     }
 }

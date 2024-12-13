@@ -1,8 +1,11 @@
 package com.example.booksviewer.domain.models;
 
+import java.io.Serializable;
 import com.google.gson.annotations.SerializedName;
 
-public class BookModel {
+public class BookModel implements Serializable {
+
+    private static final long serialVersionUID = 1L; // Optional: Add a serialVersionUID for versioning
 
     @SerializedName("id")
     private String bookId;

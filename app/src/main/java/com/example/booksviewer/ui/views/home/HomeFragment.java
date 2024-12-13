@@ -199,25 +199,12 @@ public class HomeFragment extends Fragment implements
 
     @Override
     public void onCardClick(BookModel book) {
-        String[] bookDetails = new String[]{
-                book.getVolumeInfo().getTitle() != null ? book.getVolumeInfo().getTitle() : "No Title Available",
-                book.getVolumeInfo().getAuthors() != null ? book.getVolumeInfo().getAuthors().toString() : "No Authors Available",
-                book.getVolumeInfo().getPublisher() != null ? book.getVolumeInfo().getPublisher() : "No Publisher Available",
-                book.getVolumeInfo().getPublishedDate() != null ? book.getVolumeInfo().getPublishedDate() : "No Publication Date Available",
-                book.getVolumeInfo().getDescription() != null ? book.getVolumeInfo().getDescription() : "No Description Available",
-                book.getVolumeInfo().getPageCount() > 0 ? String.valueOf(book.getVolumeInfo().getPageCount()) : "No Page Count Available",
-                book.getVolumeInfo().getImageLinks() != null && book.getVolumeInfo().getImageLinks().getThumbnail() != null
-                        ? book.getVolumeInfo().getImageLinks().getThumbnail()
-                        : "No Image Available",
-                book.getVolumeInfo().getPreviewLink() != null ? book.getVolumeInfo().getPreviewLink() : "No Preview Link Available"
-        };
-        ((MainActivity) activity).openBookDetailsFragment(bookDetails);
+        ((MainActivity) activity).openBookDetailsFragment(book);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        // Save the current scroll position and offset
         LinearLayoutManager layoutManager = (LinearLayoutManager) binding.recyclerView.getLayoutManager();
         if (layoutManager != null) {
             int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
@@ -226,8 +213,6 @@ public class HomeFragment extends Fragment implements
             if (firstVisibleItem != null) {
                 topOffset = firstVisibleItem.getTop();
             }
-
-            // Save the scroll position and offset
             scrollPosition = firstVisibleItemPosition;
             scrollOffset = topOffset;
         }

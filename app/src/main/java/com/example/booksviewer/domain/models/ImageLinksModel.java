@@ -1,8 +1,11 @@
 package com.example.booksviewer.domain.models;
 
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class ImageLinksModel {
+public class ImageLinksModel implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("smallThumbnail")
     private String smallThumbnail;
