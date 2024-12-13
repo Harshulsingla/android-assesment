@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Books Viewer</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="book_title">Book Title</string>
+    <string name="book_authors">Book Authors</string>
+    <string name="save">Save</string>
+    <string name="logo_description">Library</string>
+    <string name="history">History</string>
+    <string name="book">book</string>
+    <string name="heart_icon">Heart Icon</string>
+    <string name="authors">Authors</string>
+    <string name="publisher">Publisher</string>
+    <string name="description">Description</string>
+    <string name="page_count">Page Count</string>
+</resources>

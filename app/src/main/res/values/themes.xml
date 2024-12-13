@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.BooksViewer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/colorPrimary</item> <!-- #DFF2EB -->
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item> <!-- #B9E5E8 -->
+        <item name="colorOnPrimary">@color/colorOnPrimary</item> <!-- #4A628A -->
+
+        <!-- Secondary color -->
+        <item name="colorSecondary">@color/colorSecondary</item> <!-- #7AB2D3 -->
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item> <!-- #4A628A -->
+        <item name="colorOnSecondary">@color/colorOnSecondary</item> <!-- #FFFFFF -->
+
+        <!-- Background color -->
+        <item name="android:colorBackground">@color/colorBackground</item> <!-- #FFFFFF -->
+        <item name="colorOnBackground">@color/colorOnBackground</item> <!-- #3A3A3A -->
+
+        <!-- Surface color -->
+        <item name="colorSurface">@color/colorSurface</item> <!-- #FFFFFF -->
+        <item name="colorOnSurface">@color/colorOnSurface</item> <!-- #3A3A3A -->
+
+        <!-- Error color -->
+        <item name="colorError">@color/colorError</item> <!-- #D32F2F -->
+        <item name="colorOnError">@color/colorOnError</item> <!-- #FFFFFF -->
+
+        <!-- Control styling -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

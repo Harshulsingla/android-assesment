@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.views.bookDetails.BookDetailsFragment"
+    android:padding="@dimen/dimen_16dp">
+
+    <TextView
+        android:id="@+id/bookTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/book_title"
+        android:textSize="@dimen/dimen_20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Authors -->
+    <TextView
+        android:id="@+id/bookAuthors"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/authors"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookTitle"
+        android:layout_marginTop="8dp" />
+
+    <!-- Publisher -->
+    <TextView
+        android:id="@+id/bookPublisher"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/publisher"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookAuthors"
+        android:layout_marginTop="8dp" />
+
+    <!-- Published Date -->
+    <TextView
+        android:id="@+id/bookPublishedDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Published Date"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookPublisher"
+        android:layout_marginTop="8dp" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/bookDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textSize="@dimen/dimen_14sp"
+        android:maxLines="5"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookPublishedDate"
+        android:layout_marginTop="8dp" />
+
+    <!-- Page Count -->
+    <TextView
+        android:id="@+id/bookPageCount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/page_count"
+        android:textSize="@dimen/dimen_16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookDescription"
+        android:layout_marginTop="8dp" />
+
+    <!-- Thumbnail Image -->
+    <ImageView
+        android:id="@+id/bookThumbnail"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookPageCount"
+         />
+
+    <!-- Preview Link Button -->
+    <Button
+        android:id="@+id/bookPreviewLinkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preview Book"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookThumbnail"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:background="@color/colorBackground"/>
+
+    <!-- Favorite Button (Toggle) -->
+    <ToggleButton
+        android:id="@+id/favoriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Favorite"
+        android:textOff="Not Favorite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bookPreviewLinkButton"
+        android:layout_marginTop="@dimen/dimen_16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

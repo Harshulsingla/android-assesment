@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:src="@drawable/logo"
+        android:contentDescription="@string/logo_description"
+        android:scaleType="centerInside"
+        android:layout_gravity="top"
+        android:background="@color/colorPrimary" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_50dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

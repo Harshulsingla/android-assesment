@@ -1,0 +1,41 @@
+<resources>
+    <!-- Primary colors -->
+    <color name="colorPrimary">#DFF2EB</color> <!-- Light blue-green -->
+    <color name="colorPrimaryVariant">#B9E5E8</color> <!-- Lighter blue -->
+    <color name="colorOnPrimary">#4A628A</color> <!-- Dark blue for text/icons on primary -->
+
+    <!-- Secondary colors -->
+    <color name="colorSecondary">#7AB2D3</color> <!-- Light blue -->
+    <color name="colorSecondaryVariant">#4A628A</color> <!-- Darker blue -->
+    <color name="colorOnSecondary">#FFFFFF</color> <!-- White text/icons on secondary -->
+
+    <!-- Background colors -->
+    <color name="colorBackground">#FFFFFF</color> <!-- White background -->
+    <color name="colorOnBackground">#3A3A3A</color> <!-- Dark text/icons on background -->
+
+    <!-- Surface colors -->
+    <color name="colorSurface">#FFFFFF</color> <!-- White surface -->
+    <color name="colorOnSurface">#3A3A3A</color> <!-- Dark text/icons on surface -->
+
+    <!-- Error colors -->
+    <color name="colorError">#D32F2F</color> <!-- Red for error -->
+    <color name="colorOnError">#FFFFFF</color> <!-- White text/icons on error -->
+
+    <!-- Night mode colors -->
+    <color name="colorNightPrimary">#1F1F1F</color> <!-- Dark background -->
+    <color name="colorNightPrimaryVariant">#121212</color> <!-- Very dark background -->
+    <color name="colorNightOnPrimary">#FFFFFF</color> <!-- White text/icons on primary -->
+
+    <color name="colorNightSecondary">#4F4F4F</color> <!-- Dark grey for secondary -->
+    <color name="colorNightSecondaryVariant">#3A3A3A</color> <!-- Slightly darker grey -->
+    <color name="colorNightOnSecondary">#FFFFFF</color> <!-- White text/icons on secondary -->
+
+    <color name="colorNightBackground">#121212</color> <!-- Very dark background -->
+    <color name="colorNightOnBackground">#FFFFFF</color> <!-- White text/icons on background -->
+
+    <color name="colorNightSurface">#1F1F1F</color> <!-- Dark surface -->
+    <color name="colorNightOnSurface">#E0E0E0</color> <!-- Light text/icons on surface -->
+
+    <color name="colorNightError">#CF6679</color> <!-- Light red for error -->
+    <color name="colorNightOnError">#000000</color> <!-- Dark text/icons on error -->
+</resources>
