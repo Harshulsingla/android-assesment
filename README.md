@@ -73,9 +73,10 @@ Submit a pull request.
 
 
 **Screenshots**
-![{B1D9586A-75AA-4A33-B813-65471E884FC7}](https://github.com/user-attachments/assets/418be7e2-a96f-4d87-afab-39a7b353c39d)
-![{CB844D4B-68D6-475A-8F61-369F8092EDA4}](https://github.com/user-attachments/assets/b4d1b6b5-dd00-4903-8ffa-658d6276ec5e)
-![{5F89DB9B-E4F1-4D6B-B015-83901C99391A}](https://github.com/user-attachments/assets/85e29700-2ce6-4f4e-bcdd-ea918c467d8c)
+![{2BEB3BC7-60D9-4A29-9286-B72D836114EC}](https://github.com/user-attachments/assets/967e1a41-2192-4fd8-baaf-b55367372ebe)
+![{53CF46FB-F988-4E46-9F7A-586869AD3AC4}](https://github.com/user-attachments/assets/39cacb3b-b525-4d04-84d9-13fe49150b60)
+![{866643E2-F7F9-4991-BE06-851D9A55E8E8}](https://github.com/user-attachments/assets/cad18de3-8224-4446-aff4-a129cec2959f)
+
 
 
 
