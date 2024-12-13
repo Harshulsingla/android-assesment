@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="android:statusBarColor">#669900</item> <!-- Replace with your desired color -->
+        <item name="android:windowLightStatusBar">true</item> <!-- Use this for dark text on a light background -->
+    </style>
+</resources>

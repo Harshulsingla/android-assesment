@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Word Title -->
+        <TextView
+            android:id="@+id/wordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Word Title"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Phonetic Pronunciation and Play Icon (Right-Aligned) -->
+        <TextView
+            android:id="@+id/phoneticPronunciation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phonetic"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/playIcon"
+            app:layout_constraintTop_toTopOf="@id/wordTitle"
+            app:layout_constraintBottom_toBottomOf="@id/wordTitle" />
+
+        <ImageView
+            android:id="@+id/playIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Play Pronunciation"
+            android:src="@android:drawable/ic_media_play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/wordTitle"
+            app:layout_constraintBottom_toBottomOf="@id/wordTitle" />
+
+        <!-- Part of Speech Title -->
+        <TextView
+            android:id="@+id/partOfSpeech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noun"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phoneticPronunciation" />
+
+        <!-- Definition of Part of Speech -->
+        <TextView
+            android:id="@+id/definition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Definition: A short description of the word."
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partOfSpeech" />
+
+        <!-- Example Sentence (If Present) -->
+        <TextView
+            android:id="@+id/synonyms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Synonyms : Synonym 1, Synonym 2.Synonym 1, Synonym 2.Synonym 1, Synonym 2."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/definition" />
+
+        <ImageButton
+            android:id="@+id/seeMoreButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="See More"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            android:src="@android:drawable/ic_menu_more"
+            app:layout_constraintEnd_toStartOf="@id/saveButton"
+            app:layout_constraintTop_toTopOf="@id/synonyms"
+            android:background="@drawable/circular_green_background"/>
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@android:drawable/ic_menu_save"
+            android:contentDescription="Save"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/synonyms"
+            android:background="@drawable/circular_green_background"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
