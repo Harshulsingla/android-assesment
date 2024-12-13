@@ -18,8 +18,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.booksviewer.MainActivity;
+import com.example.booksviewer.R;
 import com.example.booksviewer.databinding.FragmentHomeBinding;
 import com.example.booksviewer.domain.models.BookModel;
 import com.example.booksviewer.utils.OnBookClickListener;
@@ -71,6 +73,26 @@ public class HomeFragment extends Fragment implements
         setupSearchBar();
         observeViewModelData();
         setupBackPressHandler();
+
+        SwipeRefreshLayout swipeRefreshLayout = binding.getRoot().findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            // Clear the search bar and the list
+            binding.searchBar.searchInput.setText("");
+            homeViewModel.clearBooks();
+            binding.recyclerView.setVisibility(View.GONE);
+            binding.emptyStateComponent.getRoot().setVisibility(View.VISIBLE); // Show empty state
+
+            // Stop the refresh animation
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
+        homeViewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
+            if (isLoading) {
+                binding.progressBarBottom.setVisibility(View.VISIBLE); // Show ProgressBar
+            } else {
+                binding.progressBarBottom.setVisibility(View.GONE); // Hide ProgressBar
+            }
+        });
 
         homeViewModel.getIsLoading().observe(getViewLifecycleOwner(), isLoading -> {
             if (isLoading) {

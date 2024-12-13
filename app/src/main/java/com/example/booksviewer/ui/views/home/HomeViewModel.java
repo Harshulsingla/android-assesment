@@ -156,4 +156,8 @@ public class HomeViewModel extends ViewModel {
         // Use BookUtils to handle un saving from DB
         BookUtils.unSaveBook(dbService, book);
     }
+
+    public void clearBooks() {
+        books.postValue(new ArrayList<>());
+    }
 }
