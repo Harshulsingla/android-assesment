@@ -65,16 +65,13 @@ Books Viewer is an Android application that allows users to search for books, vi
 ## Screenshots
 
 ### Book Search
-[Insert Screenshot or Screen Recording Here]
+![Book Search Screenshot](assets/search_book_day.png)
+![Book Search Screenshot](assets/search_book_night.png)
 
 ### Book Details Screen
-[Insert Screenshot or Screen Recording Here]
+![Book Details Screenshot](assets/book_detaills_day.png)
+![Book Details Screenshot](assets/book_detaills_night.png)
 
-### Favorites Screen
-[Insert Screenshot or Screen Recording Here]
-
-### Dark Mode
-[Insert Screenshot or Screen Recording Here]
 
 ---
 
