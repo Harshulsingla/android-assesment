@@ -97,7 +97,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public void applyUpdates(List<BookModel> bookModels) {
 
         if (bookModels != null && !bookModels.isEmpty()) {
-            Log.d("BookAdapteaaaaaaaaaaaar", "Books updated: " + bookModels.size());
             // If bookModels is not empty, add new books
             this.books.addAll(bookModels);
             Log.d("BookAdapter", "Books updated: " + books.size());
