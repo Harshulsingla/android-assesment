@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
+    app:cardCornerRadius="@dimen/dimen_16dp"
+    app:cardElevation="@dimen/dimen_4dp"
     android:backgroundTint="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="@dimen/dimen_12dp">
 
         <!-- Search Input -->
         <EditText
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/dimen_8dp"
             android:hint="@string/search"
             android:importantForAutofill="no"
             android:inputType="text"
