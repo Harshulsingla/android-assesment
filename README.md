@@ -22,9 +22,7 @@ Books Viewer is an Android application that allows users to search for books, vi
 
 ### Steps to Run the Project
 
-1. Clone the repository:
-   ```bashhttps://github.com/Harshulsingla/android-assesment.git
-   ```
+1. Clone the repository: bashhttps://github.com/Harshulsingla/android-assesment.git
 2. Open the project in Android Studio.
 3. Build and sync the Gradle files.
 4. Run the application on an emulator or a physical device.
