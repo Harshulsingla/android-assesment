@@ -30,6 +30,7 @@ public class BookUtils {
             try {
                 dbService.insertBookWithDetails(bookWithDetails);
                 Log.d(TAG, "Book saved to DB: " + book.getBookId());
+                book.setSaved(true);
             } catch (Exception e) {
                 Log.e(TAG, "Error saving book to DB", e);
             }
@@ -48,6 +49,7 @@ public class BookUtils {
                 long result = dbService.deleteBookById(book.getBookId());
                 if (result > 0) {
                     Log.d(TAG, "Book deleted successfully with ID: " + book.getBookId());
+                    book.setSaved(false);
                 } else {
                     Log.e(TAG, "Failed to delete book with ID: " + book.getBookId());
                 }

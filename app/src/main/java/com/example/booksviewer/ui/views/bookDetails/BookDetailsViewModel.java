@@ -27,28 +27,14 @@ public class BookDetailsViewModel extends ViewModel {
         this.executorService = Executors.newSingleThreadExecutor();
     }
 
-    public LiveData<Boolean> getIsBookSaved() {
-        return isBookSaved;
-    }
-
-    public void checkIfBookIsSaved(String bookId) {
-        executorService.execute(() -> {
-            boolean exists = dbService.getBookWithDetailsById(bookId) != null;
-            isBookSaved.postValue(exists);
-        });
-    }
-
     public void toggleBookSaveState(boolean isCurrentlySaved, BookModel book) {
         executorService.execute(() -> {
             if (isCurrentlySaved) {
-                // Unsaving the book
                 BookUtils.unSaveBook(dbService, book);
             } else {
-                // Saving the book
                 BookUtils.saveBookToDb(dbService, book);
             }
-            // After the operation, update the UI to reflect the new state
-            isBookSaved.postValue(!isCurrentlySaved); // Toggle the state
+            isBookSaved.postValue(!isCurrentlySaved);
         });
     }
 

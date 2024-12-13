@@ -3,6 +3,7 @@ package com.example.booksviewer.ui.views.bookDetails;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import com.example.booksviewer.domain.models.BookModel;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class BookDetailsFragment extends Fragment {
+public class BookDetailsFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_BOOK = "book";
     private FragmentBookDetailsBinding binding;
@@ -60,18 +61,17 @@ public class BookDetailsFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(BookDetailsViewModel.class);
 
         if (bookDetails != null) {
+            Log.d("hhhhhhhhhhhh", String.valueOf(bookDetails.isSaved()));
             updateUI(bookDetails);
         }
 
-        // Observe book saved status
-        viewModel.getIsBookSaved().observe(getViewLifecycleOwner(), isSaved ->
-                binding.favoriteButton.setOnCheckedChangeListener((buttonView, isChecked) ->
-                        viewModel.toggleBookSaveState(isChecked, bookDetails)));
-
         // Check initial saved state
         if (bookDetails != null) {
-            viewModel.checkIfBookIsSaved(bookDetails.getBookId());
+            binding.favoriteButton.setChecked(!bookDetails.isSaved());
         }
+
+        // Handle favorite button click and print its state
+        binding.favoriteButton.setOnClickListener(this);
 
         // Handle preview link button
         binding.bookPreviewLinkButton.setOnClickListener(v -> {
@@ -96,9 +96,6 @@ public class BookDetailsFragment extends Fragment {
                 Glide.with(this)
                         .load(book.getVolumeInfo().getImageLinks().getThumbnail())
                         .into(binding.bookThumbnail);
-            } else {
-                // Optionally set a placeholder or hide the thumbnail
-                // binding.bookThumbnail.setImageResource(R.drawable.placeholder_image); // Replace with your placeholder resource
             }
         }
     }
@@ -118,5 +115,15 @@ public class BookDetailsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null; // Avoid memory leaks
+    }
+
+    @Override
+    public void onClick(View v) {
+        boolean isChecked = binding.favoriteButton.isChecked();
+        Log.d("Favorite Button", "Button checked state: " + isChecked);
+
+        // Handle state changes or other actions
+        viewModel.toggleBookSaveState(isChecked,bookDetails);
+
     }
 }
