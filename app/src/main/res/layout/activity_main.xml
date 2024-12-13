@@ -5,10 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Placeholder for Fragment -->
+    <!-- Common Header with "Dictionary" text -->
+    <TextView
+        android:id="@+id/textDictionary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dictionary"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:background="@color/holo_green_dark"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/searchIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:contentDescription="SearchIcon"
+        android:layout_marginEnd="16dp"
+        android:elevation="10dp"
+        app:srcCompat="@drawable/search_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textDictionary"
+        app:layout_constraintBottom_toBottomOf="@+id/textDictionary"
+        android:background="@drawable/border_light_gray"
+        android:padding="4dp"/>
+
+    <!-- Placeholder for Fragment, where different fragments will be loaded -->
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textDictionary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

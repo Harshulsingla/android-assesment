@@ -11,18 +11,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textDictionary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dictionary"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:background="@color/holo_green_dark"
-        android:padding="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/wordTitle"
@@ -35,7 +23,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textDictionary" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/phoneticPronunciation"

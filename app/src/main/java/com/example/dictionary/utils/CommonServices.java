@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 
 import com.example.dictionary.R;
-import com.example.dictionary.ui.views.search.WordAdapter;
 
 import java.io.IOException;
 

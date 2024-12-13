@@ -1,7 +1,11 @@
 package com.example.dictionary.domain.entity;
+
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.Objects;
 
 @Entity(tableName = "tbl_words")
 public class WordEntity {
@@ -18,12 +22,6 @@ public class WordEntity {
 
     @ColumnInfo(name = "clm_pronunciation_audio_url")
     private String clmPronunciationAudioUrl;
-
-    @ColumnInfo(name = "clm_synonyms")
-    private String clmSynonyms; // Comma-separated list of synonyms
-
-    @ColumnInfo(name = "clm_antonyms")
-    private String clmAntonyms; // Comma-separated list of antonyms
 
     // Getters and Setters
     public int getClmId() {
@@ -58,20 +56,29 @@ public class WordEntity {
         this.clmPronunciationAudioUrl = clmPronunciationAudioUrl;
     }
 
-    public String getClmSynonyms() {
-        return clmSynonyms;
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
-    public void setClmSynonyms(String clmSynonyms) {
-        this.clmSynonyms = clmSynonyms;
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        // Check if the same object reference
+        if (this == obj) {
+            return true;
+        }
+
+        // Check if obj is null or of a different class
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        // Cast and compare fields
+        WordEntity other = (WordEntity) obj;
+
+        return Objects.equals(clmId, other.clmId) &&
+                Objects.equals(clmTitle, other.clmTitle);
     }
 
-    public String getClmAntonyms() {
-        return clmAntonyms;
-    }
 
-    public void setClmAntonyms(String clmAntonyms) {
-        this.clmAntonyms = clmAntonyms;
-    }
 }
-

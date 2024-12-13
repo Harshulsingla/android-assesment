@@ -1,19 +1,25 @@
 package com.example.dictionary.db;
 
 import com.example.dictionary.db.dao.PartOfSpeechDao;
+import com.example.dictionary.db.dao.SynonymAntonymDao;
 import com.example.dictionary.db.dao.WordDao;
 import com.example.dictionary.domain.entity.PartOfSpeechEntity;
+import com.example.dictionary.domain.entity.SynonymAntonymEntity;
+import com.example.dictionary.domain.entity.WordDetailEntity;
 import com.example.dictionary.domain.entity.WordEntity;
+
 import java.util.List;
 
 public class DbService {
 
     private final WordDao wordDao;
     private final PartOfSpeechDao partOfSpeechDao;
+    private final SynonymAntonymDao synonymAntonymDao;
 
-    public DbService(WordDao wordDao, PartOfSpeechDao partOfSpeechDao) {
+    public DbService(WordDao wordDao, PartOfSpeechDao partOfSpeechDao, SynonymAntonymDao synonymAntonymDao) {
         this.wordDao = wordDao;
         this.partOfSpeechDao = partOfSpeechDao;
+        this.synonymAntonymDao = synonymAntonymDao;
     }
 
     // Word Methods
@@ -23,6 +29,14 @@ public class DbService {
 
     public WordEntity getWordById(int wordId) {
         return wordDao.getWordById(wordId);
+    }
+
+    public long deleteAllWords(){
+        return wordDao.deleteAllWords();
+    }
+
+    public List<WordEntity> getWordsByTitle(String title){
+        return wordDao.getWordsByTitle(title);
     }
 
     public long insertWord(WordEntity wordEntity) {
@@ -74,7 +88,39 @@ public class DbService {
         return partOfSpeechDao.deletePartsOfSpeechByType(partOfSpeechType);
     }
 
-    public long insertPartOfSpeechWithWordId(PartOfSpeechEntity partOfSpeechEntity, int wordId) {
-        return partOfSpeechDao.insertPartOfSpeechWithWordId(partOfSpeechEntity, wordId);
+    public String getSynonymsByWordId(int wordId) {
+        return synonymAntonymDao.getSynonymsByWordId(wordId);
+    }
+
+    public String getAntonymsByWordId(int wordId) {
+        return synonymAntonymDao.getAntonymsByWordId(wordId);
+    }
+
+    public long insertSynonymAntonym(SynonymAntonymEntity synonymAntonymEntity) {
+        return synonymAntonymDao.insertSynonymAntonym(synonymAntonymEntity);
+    }
+
+    public int updateSynonymAntonym(SynonymAntonymEntity synonymAntonymEntity) {
+        return synonymAntonymDao.updateSynonymAntonym(synonymAntonymEntity);
+    }
+
+    public int deleteSynonymAntonym(SynonymAntonymEntity synonymAntonymEntity) {
+        return synonymAntonymDao.deleteSynonymAntonym(synonymAntonymEntity);
+    }
+
+    // Transactional methods to handle Word, PartOfSpeech, and SynonymAntonym in one transaction
+    public long insertWordWithDetails(WordEntity wordEntity, List<PartOfSpeechEntity> partOfSpeechEntities, SynonymAntonymEntity synonymAntonymEntity) {
+        return wordDao.insertWordWithDetails(wordEntity, partOfSpeechEntities, synonymAntonymEntity);
+    }
+
+
+
+    public int deleteWordWithDetails(WordDetailEntity wordDetailEntity) {
+        int wordId = wordDetailEntity.getWordEntity().getClmId();
+        return wordDao.deleteWordWithDetails(wordId);
+    }
+
+    public List<WordDetailEntity> getAllWordDetails() {
+       return wordDao.getAllWordDetails();
     }
 }

@@ -34,6 +34,7 @@
             android:text="Phonetic"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
+            android:layout_marginHorizontal="4dp"
             app:layout_constraintEnd_toStartOf="@id/playIcon"
             app:layout_constraintTop_toTopOf="@id/wordTitle"
             app:layout_constraintBottom_toBottomOf="@id/wordTitle" />
@@ -46,7 +47,7 @@
             android:src="@android:drawable/ic_media_play"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/wordTitle"
-            app:layout_constraintBottom_toBottomOf="@id/wordTitle" />
+            app:layout_constraintBottom_toBottomOf="@id/wordTitle"/>
 
         <!-- Part of Speech Title -->
         <TextView
@@ -61,6 +62,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phoneticPronunciation" />
 
+        <TextView
+            android:id="@+id/DefinitionHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Definition"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partOfSpeech" />
+
         <!-- Definition of Part of Speech -->
         <TextView
             android:id="@+id/definition"
@@ -71,37 +83,50 @@
             android:textSize="16sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/partOfSpeech" />
+            app:layout_constraintTop_toBottomOf="@id/DefinitionHeading" />
 
-        <!-- Example Sentence (If Present) -->
+        <!-- Synonyms Heading -->
+        <TextView
+            android:id="@+id/synonymsHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Example"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/definition" />
+
+        <!-- Synonyms -->
         <TextView
             android:id="@+id/synonyms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Synonyms : Synonym 1, Synonym 2.Synonym 1, Synonym 2.Synonym 1, Synonym 2."
+            android:text="Synonyms : Synonym 1, Synonym 2"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp"
             android:layout_marginTop="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/definition" />
-
-        <ImageButton
-            android:id="@+id/seeMoreButton"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:contentDescription="See More"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="4dp"
-            android:src="@android:drawable/ic_menu_more"
-            app:layout_constraintEnd_toStartOf="@id/saveButton"
-            app:layout_constraintTop_toTopOf="@id/synonyms"
-            android:background="@drawable/circular_green_background"/>
+            app:layout_constraintTop_toBottomOf="@id/synonymsHeading" />
 
         <ImageButton
             android:id="@+id/saveButton"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@android:drawable/ic_menu_save"
+            android:contentDescription="Save"
+            android:visibility="gone"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/synonyms"
+            android:background="@drawable/circular_green_background"/>
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@android:drawable/ic_menu_delete"
+            android:visibility="visible"
             android:contentDescription="Save"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"

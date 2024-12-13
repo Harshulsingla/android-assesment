@@ -10,9 +10,6 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-//    @GET("api/v2/entries/en/Good")
-//    Call<List<WordModel>> fetchUserList();
-
     @GET("api/v2/entries/en/{word}")
     Call<List<WordModel>> fetchWordDetail(@Path("word") String word);
 

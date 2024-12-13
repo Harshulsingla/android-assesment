@@ -19,6 +19,10 @@ public class DefinitionModel {
     @Expose
     private List<String> antonyms;
 
+    @SerializedName("example")  // Added the 'example' field with Gson annotation
+    @Expose
+    private String example;  // This will hold the example sentence
+
     public String getDefinition() {
         return definition;
     }
@@ -41,5 +45,13 @@ public class DefinitionModel {
 
     public void setAntonyms(List<String> antonyms) {
         this.antonyms = antonyms;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dictionary.MainActivity;
 import com.example.dictionary.R;
 import com.example.dictionary.databinding.FragmentSearchBinding;
-import com.example.dictionary.domain.models.WordModel;
+import com.example.dictionary.domain.entity.WordDetailEntity;
 import com.example.dictionary.domain.preferences.PreferenceHelper;
 
 import java.util.ArrayList;
@@ -66,6 +67,9 @@ public class SearchFragment extends Fragment implements WordAdapter.OnClickListe
             activity = getActivity();
             PreferenceHelper.getInstance(activity, "search_prefs");
         }
+
+        View parentView = activity.findViewById(R.id.searchIcon);
+        parentView.setVisibility(View.GONE);
 
         // Initialize the RecyclerView
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -115,6 +119,17 @@ public class SearchFragment extends Fragment implements WordAdapter.OnClickListe
             binding.progressBar.setVisibility(View.GONE);
         });
 
+        searchViewModel.getSavedWordResult().observe(getViewLifecycleOwner(), savedWordResult -> {
+            if(savedWordResult > 0){
+                Toast.makeText(activity, "Word Saved Successfully", Toast.LENGTH_SHORT).show();
+            }else if(savedWordResult == -1){
+                Toast.makeText(activity, "Word Already Exists", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(activity, "Error While Saving Words", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
@@ -135,9 +150,12 @@ public class SearchFragment extends Fragment implements WordAdapter.OnClickListe
     }
 
     @Override
-    public void onClickListener(String action, WordModel word) {
+    public void onClickListener(String action, WordDetailEntity wordDetailEntity) {
         if (action.equals("SeeMore")) {
-            ((MainActivity) activity).openWordDetailFragment(word);
+            ((MainActivity) activity).openWordDetailFragment(wordDetailEntity);
+        }
+        if(action.equals("SaveWord")){
+            searchViewModel.saveWordDetails(wordDetailEntity);
         }
     }
 
@@ -145,8 +163,5 @@ public class SearchFragment extends Fragment implements WordAdapter.OnClickListe
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (wordAdapter != null) {
-            wordAdapter.releaseMediaPlayer(); // Release MediaPlayer to prevent leaks
-        }
     }
 }

@@ -1,58 +1,49 @@
-package com.example.dictionary.ui.views.search;
+package com.example.dictionary.ui.views.offlineWords;
 
-import android.media.AudioAttributes;
-import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dictionary.R;
 import com.example.dictionary.domain.entity.PartOfSpeechEntity;
 import com.example.dictionary.domain.entity.SynonymAntonymEntity;
 import com.example.dictionary.domain.entity.WordDetailEntity;
 import com.example.dictionary.domain.entity.WordEntity;
-import com.example.dictionary.domain.mappers.WordMapper;
-import com.example.dictionary.domain.models.DefinitionModel;
-import com.example.dictionary.domain.models.MeaningModel;
-import com.example.dictionary.domain.models.PhoneticModel;
-import com.example.dictionary.domain.models.WordModel;
-import com.example.dictionary.R;
-import com.example.dictionary.ui.views.offlineWords.OfflineWordsFragment;
 import com.example.dictionary.utils.CommonServices;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
-    private List<WordDetailEntity> wordList;
+public class WordDetailAdapter extends RecyclerView.Adapter<WordDetailAdapter.OfflineWordViewHolder>{
+
+    private List<WordDetailEntity> wordDetailEntityList = new ArrayList<>();
 
     private final OnClickListener listener;
-
 
     public interface OnClickListener{
         void onClickListener(String action, WordDetailEntity wordDetailEntity);
     }
 
-    public WordAdapter(List<WordDetailEntity> wordList, OnClickListener listener) {
-        this.wordList = wordList;
+    public WordDetailAdapter(List<WordDetailEntity> wordList, WordDetailAdapter.OnClickListener listener) {
+        this.wordDetailEntityList = wordList;
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WordDetailAdapter.OfflineWordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.word_card, parent, false);
-        return new WordViewHolder(view);
+        return new WordDetailAdapter.OfflineWordViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
-        WordDetailEntity wordDetailEntity = wordList.get(position);
+    public void onBindViewHolder(@NonNull OfflineWordViewHolder holder, int position) {
+        WordDetailEntity wordDetailEntity = wordDetailEntityList.get(position);
 
         WordEntity wordEntity = wordDetailEntity.getWordEntity();
         List<PartOfSpeechEntity> partOfSpeechEntities = wordDetailEntity.getPartOfSpeechEntities();
@@ -89,6 +80,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
             }else{
                 holder.synonymsHeading.setVisibility(View.GONE);
             }
+
             break;
         }
 
@@ -104,25 +96,35 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
 
         holder.itemView.setOnClickListener(v-> listener.onClickListener("SeeMore", wordDetailEntity));
 
-
     }
 
-    public void updateSearchResult(List<WordDetailEntity> wordList){
-        this.wordList = wordList;
-        notifyDataSetChanged();
+
+
+    public void loadOfflineWords(List<WordDetailEntity> offlineWordsList){
+        if(wordDetailEntityList != null && !offlineWordsList.isEmpty() && wordDetailEntityList.size() < offlineWordsList.size()){
+            this.wordDetailEntityList = offlineWordsList;
+            notifyItemInserted(0);
+        }
+    }
+
+    public void deleteOfflineWord(int position){
+        if(position >=0 && position < wordDetailEntityList.size()){
+            wordDetailEntityList.remove(position);
+          //  notifyItemRemoved(position);
+            notifyItemRemoved(position);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return wordList.size();
+        return wordDetailEntityList.size();
     }
 
-
-    public static class WordViewHolder extends RecyclerView.ViewHolder {
+    public static class OfflineWordViewHolder extends RecyclerView.ViewHolder {
         TextView wordTitle, phoneticPronunciation, partOfSpeech, definition, synonyms, synonymsHeading;
         ImageView playIcon, saveButton, deleteButton;
 
-        public WordViewHolder(View itemView) {
+        public OfflineWordViewHolder(View itemView) {
             super(itemView);
             wordTitle = itemView.findViewById(R.id.wordTitle);
             phoneticPronunciation = itemView.findViewById(R.id.phoneticPronunciation);
@@ -135,5 +137,6 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
             synonymsHeading = itemView.findViewById(R.id.synonymsHeading);
         }
     }
-}
 
+
+}

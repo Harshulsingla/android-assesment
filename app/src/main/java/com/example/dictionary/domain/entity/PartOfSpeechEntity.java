@@ -1,5 +1,6 @@
 package com.example.dictionary.domain.entity;
 
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -71,6 +72,26 @@ public class PartOfSpeechEntity {
 
     public void setClmWordId(int clmWordId) {
         this.clmWordId = clmWordId;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true; // Check if both are the same object
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Ensure the object is not null and is of the same class
+        }
+
+        PartOfSpeechEntity that = (PartOfSpeechEntity) obj; // Cast the object to the correct type
+
+        // Compare clmWordId and clmPartOfSpeech for equality
+        return clmWordId == that.clmWordId && clmPartOfSpeech != null && clmPartOfSpeech.equals(that.clmPartOfSpeech);
     }
 }
 

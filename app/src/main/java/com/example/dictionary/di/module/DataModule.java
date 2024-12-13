@@ -9,6 +9,7 @@ import com.example.dictionary.data.network.ApiService;
 import com.example.dictionary.db.DbService;
 import com.example.dictionary.db.RoomDBHelper;
 import com.example.dictionary.db.dao.PartOfSpeechDao;
+import com.example.dictionary.db.dao.SynonymAntonymDao;
 import com.example.dictionary.db.dao.WordDao;
 import com.example.dictionary.domain.repository.Repository;
 
@@ -95,8 +96,14 @@ public class DataModule {
 
     @Provides
     @Singleton
-    public DbService provideDbService(WordDao wordDao, PartOfSpeechDao partOfSpeechDao) {
-        return new DbService(wordDao, partOfSpeechDao);
+    public SynonymAntonymDao provideSynonymAntonymDao(RoomDBHelper db) {
+        return db.synonymAntonymDao();
+    }
+
+    @Provides
+    @Singleton
+    public DbService provideDbService(WordDao wordDao, PartOfSpeechDao partOfSpeechDao, SynonymAntonymDao synonymAntonymDao) {
+        return new DbService(wordDao, partOfSpeechDao, synonymAntonymDao);
     }
 
 
