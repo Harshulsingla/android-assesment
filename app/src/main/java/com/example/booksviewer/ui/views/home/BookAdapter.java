@@ -83,13 +83,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         }
 
         // Set up the Heart Icon as Save/Un-save toggle
-        holder.heartIcon.setOnClickListener(v -> {
-            onSaveIconClickListener.onHeartIconClick(book, position);  // Pass to listener
-        });
+        holder.heartIcon.setOnClickListener(v -> onSaveIconClickListener.onHeartIconClick(book, position));
 
-        holder.itemView.setOnClickListener(v -> {
-            onBookClickListener.onCardClick(book);  // Pass to listener for card click
-        });
+        holder.itemView.setOnClickListener(v -> onBookClickListener.onCardClick(book));
     }
 
     @Override
@@ -99,18 +95,20 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     // Method to apply updates (add new books or clear current ones)
     public void applyUpdates(List<BookModel> bookModels) {
+
         if (bookModels != null && !bookModels.isEmpty()) {
-            this.books.addAll(bookModels);  // Add the new books to the existing list
+            Log.d("BookAdapteaaaaaaaaaaaar", "Books updated: " + bookModels.size());
+            // If bookModels is not empty, add new books
+            this.books.addAll(bookModels);
             Log.d("BookAdapter", "Books updated: " + books.size());
-            notifyItemRangeInserted(books.size() - bookModels.size(), bookModels.size());  // Notify only the new items added
+            notifyItemRangeInserted(books.size() - bookModels.size(), bookModels.size());
         } else {
-            // If bookModels is null or empty, clear the books list and notify adapter
-            int currentSize = this.books.size();  // Get the current size of the list before clearing
-            this.books.clear();  // Clear the list
+            // If bookModels is empty, clear the books list
+            int currentSize = this.books.size();
+            this.books.clear();
             Log.d("BookAdapter", "Books cleared, size: " + books.size());
             if (currentSize > 0) {
-                // Notify the adapter that all items are removed
-                notifyItemRangeRemoved(0, currentSize);  // Start from position 0 and remove currentSize items
+                notifyItemRangeRemoved(0, currentSize);
             }
         }
     }
@@ -118,6 +116,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public List<BookModel> getCurrentBooks() {
         return books;
     }
+
 
     public static class BookViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
@@ -131,6 +130,24 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             authorsTextView = itemView.findViewById(R.id.book_authors);
             thumbnailImageView = itemView.findViewById(R.id.book_thumbnail);
             heartIcon = itemView.findViewById(R.id.heart_icon); // Correct reference to heart icon
+        }
+    }
+
+    public void HandleUpdate(List<BookModel> bookModels) {
+
+        if (bookModels != null && !bookModels.isEmpty() && books.size() < bookModels.size()) {
+            Log.d("BookAdapteaaaaaaaaaaaar", "Books updated: " + bookModels.size());
+            // If bookModels is not empty, add new books
+            this.books.addAll(bookModels);
+            Log.d("BookAdapter", "Books updated: " + books.size());
+            notifyItemRangeInserted(books.size() - bookModels.size(), bookModels.size());
+        }
+    }
+
+    public void HandleDelete(int position) {
+        if (position >= 0 && position < books.size()) {
+            books.remove(position);
+            notifyItemRemoved(position);
         }
     }
 }

@@ -112,6 +112,15 @@ public class HomeFragment extends Fragment implements
             if (bookModels != null && !bookModels.equals(bookAdapter.getCurrentBooks())) {
                 bookAdapter.applyUpdates(bookModels);
             }
+
+            // Handle visibility of empty state component
+            if (bookModels == null || bookModels.isEmpty()) {
+                binding.emptyStateComponent.getRoot().setVisibility(View.VISIBLE);
+                binding.recyclerView.setVisibility(View.GONE);
+            } else {
+                binding.emptyStateComponent.getRoot().setVisibility(View.GONE);
+                binding.recyclerView.setVisibility(View.VISIBLE);
+            }
         });
 
         homeViewModel.getSearchHistory().observe(getViewLifecycleOwner(), searchHistory -> {

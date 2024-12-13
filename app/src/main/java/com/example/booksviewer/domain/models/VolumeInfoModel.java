@@ -107,4 +107,6 @@ public class VolumeInfoModel implements Serializable {
     public void setPreviewLink(String previewLink) {
         this.previewLink = previewLink;
     }
+
+
 }

@@ -29,4 +29,13 @@ public class ImageLinksModel implements Serializable {
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
+
+    @Override
+    public String toString() {
+        return "ImageLinksModel{" +
+                "thumbnail='" + thumbnail + '\'' +
+                ", smallThumbnail='" + smallThumbnail + '\'' +
+                // Add other fields as necessary
+                '}';
+    }
 }

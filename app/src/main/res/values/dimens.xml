@@ -10,4 +10,7 @@
     <dimen name="dimen_16sp">16sp</dimen>
     <dimen name="dimen_48dp">48dp</dimen>
     <dimen name="dimen_60dp">60dp</dimen>
+    <dimen name="dimen_18sp">18sp</dimen>
+    <dimen name="dimen_200dp">200dp</dimen>
+    <dimen name="dimen_250dp">250dp</dimen>
 </resources>

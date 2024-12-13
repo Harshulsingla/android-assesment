@@ -19,4 +19,6 @@
     <string name="unsave">Unsave</string>
     <string name="dark_mode">Dark Mode\n</string>
     <string name="favorites">Favorites\n</string>
+    <string name="no_data_image">No Data</string>
+    <string name="no_data_available_at_the_moment">No data available at the moment!</string>
 </resources>

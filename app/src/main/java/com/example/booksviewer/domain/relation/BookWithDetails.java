@@ -16,21 +16,21 @@ public class BookWithDetails {
     public BookEntity bookEntity;
 
     @Relation(
-            parentColumn = "clm_book_id",
+            parentColumn = "id",
             entity = SaleInfoEntity.class,
             entityColumn = "clm_book_id"
     )
     public SaleInfoEntity saleInfoEntity;
 
     @Relation(
-            parentColumn = "clm_book_id",
+            parentColumn = "id",
             entity = SearchInfoEntity.class,
             entityColumn = "clm_book_id"
     )
     public SearchInfoEntity searchInfoEntity;
 
     @Relation(
-            parentColumn = "clm_book_id",
+            parentColumn = "id",
             entity = VolumeInfoEntity.class,
             entityColumn = "clm_book_id"
     )
