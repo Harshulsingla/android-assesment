@@ -41,4 +41,12 @@ public class Repository {
     public void clearSearchHistory() {
         preferenceHelper.clearSearchHistory();
     }
+
+    public String getThemeMode(){
+        return preferenceHelper.getThemeMode();
+    }
+
+    public void saveThemeMode(String mode){
+        preferenceHelper.saveThemeMode(mode);
+    }
 }

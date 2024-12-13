@@ -42,6 +42,8 @@ public class HomeFragment extends Fragment implements
     private SearchHistoryAdapter searchHistoryAdapter;
     private final int resultsPerPage = 5;
 
+    private Context context;
+
     private int scrollPosition = 0;
     private int scrollOffset = 0; // To store the scroll offset
     private Activity activity;
@@ -58,6 +60,8 @@ public class HomeFragment extends Fragment implements
         super.onViewCreated(view, savedInstanceState);
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        context = getContext();
 
         if (getActivity() != null) {
             activity = getActivity();
@@ -78,12 +82,12 @@ public class HomeFragment extends Fragment implements
     }
 
     private void initAdapters() {
-        bookAdapter = new BookAdapter(homeViewModel.getBooks().getValue() != null ? homeViewModel.getBooks().getValue() : new ArrayList<>(), getContext(), this, this);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        bookAdapter = new BookAdapter(homeViewModel.getBooks().getValue() != null ? homeViewModel.getBooks().getValue() : new ArrayList<>(), context, this, this);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(context));
         binding.recyclerView.setAdapter(bookAdapter);
 
         searchHistoryAdapter = new SearchHistoryAdapter(new ArrayList<>(), this::handleSearchQuery);
-        binding.searchHistoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.searchHistoryRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         binding.searchHistoryRecyclerView.setAdapter(searchHistoryAdapter);
 
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -118,14 +122,14 @@ public class HomeFragment extends Fragment implements
     }
 
     private void setupBackPressHandler() {
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+        ((MainActivity) activity ).getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 if (binding.searchHistoryRecyclerView.getVisibility() == View.VISIBLE) {
                     toggleSearchHistoryVisibility(false);
                 } else {
                     setEnabled(false);
-                    requireActivity().onBackPressed();
+                    ((MainActivity) activity ).onBackPressed();
                 }
             }
         });
@@ -147,11 +151,14 @@ public class HomeFragment extends Fragment implements
         if (!query.isEmpty()) {
             homeViewModel.prepareApiCall(query, currentPage * resultsPerPage, resultsPerPage);
         } else {
-            Toast.makeText(getContext(), "No search query to load more results", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "No search query to load more results", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void toggleSearchHistoryVisibility(boolean show) {
+        if(show){
+            homeViewModel.setSearchHistory();
+        }
         binding.searchHistoryRecyclerView.setVisibility(show ? View.VISIBLE : View.GONE);
         binding.recyclerView.setVisibility(show ? View.GONE : View.VISIBLE);
 

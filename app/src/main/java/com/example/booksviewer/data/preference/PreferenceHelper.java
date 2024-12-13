@@ -9,7 +9,6 @@ import com.google.gson.reflect.TypeToken;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -17,6 +16,8 @@ public class PreferenceHelper {
 
     private static final String PREF_NAME = "books_viewer_prefs";
     private static final String SEARCH_HISTORY_KEY = "search_history";
+
+    private static final String THEME_MODE_KEY = "theme_mode";
 
     private final SharedPreferences sharedPreferences;
     private final Gson gson;
@@ -58,5 +59,17 @@ public class PreferenceHelper {
     // Clear search history
     public void clearSearchHistory() {
         sharedPreferences.edit().remove(SEARCH_HISTORY_KEY).apply();
+    }
+
+    // Save theme mode (dark or light) to SharedPreferences
+    public void saveThemeMode(String mode) {
+        sharedPreferences.edit()
+                .putString(THEME_MODE_KEY, mode)
+                .apply();
+    }
+
+    // Get the saved theme mode from SharedPreferences
+    public String getThemeMode() {
+        return sharedPreferences.getString(THEME_MODE_KEY, "light"); // Default to light if no preference is found
     }
 }

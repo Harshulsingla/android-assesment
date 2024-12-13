@@ -38,4 +38,7 @@
 
     <color name="colorNightError">#CF6679</color> <!-- Light red for error -->
     <color name="colorNightOnError">#000000</color> <!-- Dark text/icons on error -->
+
+    <color name="colorBlackText">#000000</color>
+
 </resources>

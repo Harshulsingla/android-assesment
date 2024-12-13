@@ -15,8 +15,8 @@
     <!-- Icon placed before the text -->
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/dimen_30dp"
+        android:layout_height="@dimen/dimen_30dp"
         android:src="@drawable/ic_history"
         android:contentDescription="@string/history"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:id="@+id/query_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorBlackText"
         android:textSize="16sp"
         android:maxLines="1"
         app:layout_constraintStart_toEndOf="@id/icon"

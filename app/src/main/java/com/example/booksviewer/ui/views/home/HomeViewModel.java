@@ -31,6 +31,7 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<List<String>> searchHistory = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     private String currentQuery;
     private int currentPage = 0;
 
@@ -38,6 +39,9 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel(Repository repository, DbService dbService) {
         this.repository = repository;
         this.dbService = dbService;
+    }
+
+    public void setSearchHistory(){
         searchHistory.setValue(repository.getSearchHistory());
     }
 
@@ -139,14 +143,8 @@ public class HomeViewModel extends ViewModel {
             return;
         }
 
-        BookWithDetails bookWithDetails = BookUtils.mapBookToEntity(book);
-        executorService.submit(() -> {
-            try {
-                dbService.insertBookWithDetails(bookWithDetails);
-            } catch (Exception e) {
-                Log.e("saveBookToDb", "Error saving book to DB", e);
-            }
-        });
+        // Use BookUtils to handle saving to DB
+        BookUtils.saveBookToDb(dbService, book);
     }
 
     public void unSaveBook(BookModel book) {
@@ -155,17 +153,7 @@ public class HomeViewModel extends ViewModel {
             return;
         }
 
-        executorService.submit(() -> {
-            try {
-                long result = dbService.deleteBookById(book.getBookId());
-                if (result > 0) {
-                    Log.d("unSaveBook", "Book deleted successfully with ID: " + book.getBookId());
-                } else {
-                    Log.e("unSaveBook", "Failed to delete book with ID: " + book.getBookId());
-                }
-            } catch (Exception e) {
-                Log.e("unSaveBook", "Error deleting book from DB", e);
-            }
-        });
+        // Use BookUtils to handle un saving from DB
+        BookUtils.unSaveBook(dbService, book);
     }
 }

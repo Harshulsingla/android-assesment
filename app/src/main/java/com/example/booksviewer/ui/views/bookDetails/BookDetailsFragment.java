@@ -61,7 +61,6 @@ public class BookDetailsFragment extends Fragment implements View.OnClickListene
         viewModel = new ViewModelProvider(this).get(BookDetailsViewModel.class);
 
         if (bookDetails != null) {
-            Log.d("hhhhhhhhhhhh", String.valueOf(bookDetails.isSaved()));
             updateUI(bookDetails);
         }
 

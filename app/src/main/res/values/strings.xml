@@ -17,4 +17,6 @@
     <string name="published_date">Published Date</string>
     <string name="book_image">Book Image\n</string>
     <string name="unsave">Unsave</string>
+    <string name="dark_mode">Dark Mode\n</string>
+    <string name="favorites">Favorites\n</string>
 </resources>
